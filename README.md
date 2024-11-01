@@ -22,7 +22,7 @@ metrics and reporting.
 Custodian can be used to manage AWS, Azure, and GCP environments by
 ensuring real time compliance to security policies (like encryption and
 access requirements), tag policies, and cost management via garbage
-collection of unused resources and off-hours resource management.
+collection of unused resources and off-hours resource management..
 
 Custodian also supports running policies on infrastructure as code assets
 to provide feedback directly on developer workstations or within CI pipelines.
