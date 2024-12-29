@@ -1,0 +1,45 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {},
+        "displayName": "example_q_app",
+        "applicationId": "6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+        "applicationArn": "arn:aws:qbusiness:us-east-1:644160558196:application/6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+        "identityType": "AWS_IAM_IDC",
+        "identityCenterApplicationArn": "arn:aws:sso::644160558196:application/ssoins-72235ec621d04e34/apl-3a9fbc5efab44cad",
+        "roleArn": "arn:aws:iam::644160558196:role/aws-service-role/qbusiness.amazonaws.com/AWSServiceRoleForQBusiness",
+        "status": "ACTIVE",
+        "description": "Example QBusiness Application",
+        "createdAt": {
+            "__class__": "datetime",
+            "year": 2024,
+            "month": 12,
+            "day": 28,
+            "hour": 20,
+            "minute": 21,
+            "second": 51,
+            "microsecond": 204000
+        },
+        "updatedAt": {
+            "__class__": "datetime",
+            "year": 2024,
+            "month": 12,
+            "day": 28,
+            "hour": 20,
+            "minute": 21,
+            "second": 51,
+            "microsecond": 204000
+        },
+        "error": {},
+        "attachmentsConfiguration": {
+            "attachmentsControlMode": "ENABLED"
+        },
+        "qAppsConfiguration": {
+            "qAppsControlMode": "ENABLED"
+        },
+        "personalizationConfiguration": {
+            "personalizationControlMode": "ENABLED"
+        },
+        "autoSubscriptionConfiguration": {}
+    }
+}

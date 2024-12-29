@@ -1,6 +1,7 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
-from botocore.exceptions import ClientError 
+from email.mime import application
+from botocore.exceptions import ClientError
 
 
 from c7n.filters.core import Filter
@@ -11,36 +12,39 @@ from c7n.query import ConfigSource, DescribeSource, QueryResourceManager, TypeIn
 from c7n.actions import BaseAction
 
 
-
 class ConfigQBusiness(ConfigSource):
 
     def load_resource(self, item):
         # TODO: return a list of applications
         return item
 
+
 class DescribeQBusiness(DescribeSource):
+
     def resources(self, query):
-        # TODO: return a list of applications
         client = local_session(self.manager.session_factory).client('qbusiness')
         try:
-            # Making an API call to list applications in QBusiness
             paginator = client.get_paginator('list_applications')
             resources = []
             for page in paginator.paginate():
-                resources.extend(page.get('applications', []))
+                for app in page.get('applications', []):
+                    app_id = app.get('applicationId', '')
+                    if app_id:
+                        app['applicationId'] = app_id
+                        resources.append(app)
             return resources
         except ClientError as e:
-            self.manager.log.error("Error retrieving QBusiness applications: %s", e)
+            self.manager.log.error(f"Error retrieving QBusiness applications: {e}")
             return []
+
 
 @resources.register('qbusiness')
 class QBusiness(QueryResourceManager):
-
     class resource_type(TypeInfo):
         service = 'qbusiness'
         arn_type = ""
-        enum_spec = ('list_applications', 'applications', {'MaxResults': 123})
-        detail_spec = ("get_application", "applicationId", None, None)
+        enum_spec = ('list_applications', 'applications', None)
+        detail_spec = ("get_application", "applicationId", "applicationId", None)
         cfn_type = config_type = 'AWS::QBusiness::Application'
         id = 'applicationId'
         arn = "applicationArn"
@@ -48,17 +52,19 @@ class QBusiness(QueryResourceManager):
         date = 'createdAt'
         dimension = 'ChatMessages'
         universal_taggable = object()
-        global_resource = True
+        global_resource = False
         permissions_augment = ("qbusiness:ListTagsOfResource",)
-    
+
     source_mapping = {
         'describe': DescribeQBusiness,
         'config': ConfigQBusiness
     }
 
+
 @QBusiness.filter_registry.register('kms-key')
 class KmsFilter(KmsRelatedFilter):
     RelatedIdsExpression = 'encryptionConfiguration.KmsKeyId'
+
 
 @QBusiness.filter_registry.register('has-blocked-phrases')
 class HasBlockedPhrases(Filter):
@@ -93,14 +99,13 @@ class HasBlockedPhrases(Filter):
                 results.append(resource)
         return results
 
-# TODO: Create actions here
 
+# TODO: Create actions here
 @QBusiness.action_registry.register('tag')
 class TagQBusinessApplication(BaseAction):
     """Action to tag QBusiness applications
 
     Just used of Qbusiness and Qapps
-    
     Sources:
       - elb (Access Log)
       - s3 (Access Log)

@@ -1,0 +1,42 @@
+{
+    "pytest-terraform": 1,
+    "outputs": {},
+    "resources": {
+        "awscc_qbusiness_application": {
+            "example_qbusines": {
+                "application_arn": "arn:aws:qbusiness:us-east-1:644160558196:application/6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+                "application_id": "6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+                "attachments_configuration": {
+                    "attachments_control_mode": "ENABLED"
+                },
+                "auto_subscription_configuration": null,
+                "client_ids_for_oidc": null,
+                "created_at": "2024-12-29T02:21:51.204Z",
+                "description": "Example QBusiness Application",
+                "display_name": "example_q_app",
+                "encryption_configuration": null,
+                "iam_identity_provider_arn": null,
+                "id": "6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+                "identity_center_application_arn": "arn:aws:sso::644160558196:application/ssoins-78635ec621d04e34/apl-3a9fbc5efab44cad",
+                "identity_center_instance_arn": "arn:aws:sso:::instance/ssoins-78635ec621d04e34",
+                "identity_type": "AWS_IAM_IDC",
+                "personalization_configuration": {
+                    "personalization_control_mode": "ENABLED"
+                },
+                "q_apps_configuration": {
+                    "q_apps_control_mode": "ENABLED"
+                },
+                "quick_sight_configuration": null,
+                "role_arn": "arn:aws:iam::644160558196:role/aws-service-role/qbusiness.amazonaws.com/AWSServiceRoleForQBusiness",
+                "status": "ACTIVE",
+                "tags": [
+                    {
+                        "key": "Owner",
+                        "value": "CloudCustodian"
+                    }
+                ],
+                "updated_at": "2024-12-29T02:21:51.204Z"
+            }
+        }
+    }
+}
