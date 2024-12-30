@@ -2,33 +2,36 @@
     "status_code": 200,
     "data": {
         "ResponseMetadata": {},
-        "displayName": "example_q_app",
-        "applicationId": "6b1d2c2a-dd44-475a-8fc6-e4d995417553",
-        "applicationArn": "arn:aws:qbusiness:us-east-1:644160558196:application/6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+        "displayName": "custodian_q_app",
+        "applicationId": "6f341b4b-6f81-4043-aacd-658d31a145e4",
+        "applicationArn": "arn:aws:qbusiness:us-east-1:644160558196:application/6f341b4b-6f81-4043-aacd-658d31a145e4",
         "identityType": "AWS_IAM_IDC",
-        "identityCenterApplicationArn": "arn:aws:sso::644160558196:application/ssoins-72235ec621d04e34/apl-3a9fbc5efab44cad",
+        "identityCenterApplicationArn": "arn:aws:sso::644160558196:application/ssoins-72235ec621d04e34/apl-300f4b7bb5a1cb78",
         "roleArn": "arn:aws:iam::644160558196:role/aws-service-role/qbusiness.amazonaws.com/AWSServiceRoleForQBusiness",
         "status": "ACTIVE",
-        "description": "Example QBusiness Application",
+        "description": "Custodian QBusiness Application",
+        "encryptionConfiguration": {
+            "kmsKeyId": "arn:aws:kms:us-east-1:644160558196:key/dd2d48b1-f22c-497f-88ca-78f47c2eda4a"
+        },
         "createdAt": {
             "__class__": "datetime",
             "year": 2024,
             "month": 12,
-            "day": 28,
-            "hour": 20,
-            "minute": 21,
-            "second": 51,
-            "microsecond": 204000
+            "day": 29,
+            "hour": 23,
+            "minute": 15,
+            "second": 58,
+            "microsecond": 813000
         },
         "updatedAt": {
             "__class__": "datetime",
             "year": 2024,
             "month": 12,
-            "day": 28,
-            "hour": 20,
-            "minute": 21,
-            "second": 51,
-            "microsecond": 204000
+            "day": 29,
+            "hour": 23,
+            "minute": 15,
+            "second": 58,
+            "microsecond": 813000
         },
         "error": {},
         "attachmentsConfiguration": {

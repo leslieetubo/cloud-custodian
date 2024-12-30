@@ -1,0 +1,107 @@
+{
+    "status_code": 200,
+    "data": {
+        "Aliases": [
+            {
+                "AliasName": "alias/aws/dynamodb",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/dynamodb"
+            },
+            {
+                "AliasName": "alias/aws/ebs",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/ebs"
+            },
+            {
+                "AliasName": "alias/aws/elasticfilesystem",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/elasticfilesystem"
+            },
+            {
+                "AliasName": "alias/aws/es",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/es"
+            },
+            {
+                "AliasName": "alias/aws/glue",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/glue"
+            },
+            {
+                "AliasName": "alias/aws/kinesisvideo",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/kinesisvideo"
+            },
+            {
+                "AliasName": "alias/aws/rds",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/rds"
+            },
+            {
+                "AliasName": "alias/aws/redshift",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/redshift"
+            },
+            {
+                "AliasName": "alias/aws/redshifttest",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/redshifttest"
+            },
+            {
+                "AliasName": "alias/aws/s3",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/s3"
+            },
+            {
+                "AliasName": "alias/aws/ssm",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/ssm"
+            },
+            {
+                "AliasName": "alias/aws/xray",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/aws/xray"
+            },
+            {
+                "AliasName": "alias/cloudcustodian",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/cloudcustodian",
+                "TargetKeyId": "34f0c9e4-74f6-435e-9f78-964b992af5d4",
+                "CreationDate": {
+                    "__class__": "datetime",
+                    "year": 2024,
+                    "month": 12,
+                    "day": 29,
+                    "hour": 16,
+                    "minute": 0,
+                    "second": 8,
+                    "microsecond": 252000
+                },
+                "LastUpdatedDate": {
+                    "__class__": "datetime",
+                    "year": 2024,
+                    "month": 12,
+                    "day": 29,
+                    "hour": 16,
+                    "minute": 0,
+                    "second": 8,
+                    "microsecond": 252000
+                }
+            },
+            {
+                "AliasName": "alias/qbusiness",
+                "AliasArn": "arn:aws:kms:us-east-1:644160558196:alias/qbusiness",
+                "TargetKeyId": "dd2d48b1-f22c-497f-88ca-78f47c2eda4a",
+                "CreationDate": {
+                    "__class__": "datetime",
+                    "year": 2024,
+                    "month": 12,
+                    "day": 29,
+                    "hour": 23,
+                    "minute": 14,
+                    "second": 46,
+                    "microsecond": 380000
+                },
+                "LastUpdatedDate": {
+                    "__class__": "datetime",
+                    "year": 2024,
+                    "month": 12,
+                    "day": 29,
+                    "hour": 23,
+                    "minute": 14,
+                    "second": 46,
+                    "microsecond": 380000
+                }
+            }
+        ],
+        "Truncated": false,
+        "ResponseMetadata": {}
+    }
+}

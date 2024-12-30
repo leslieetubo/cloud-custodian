@@ -63,7 +63,7 @@ class QBusiness(QueryResourceManager):
 
 @QBusiness.filter_registry.register('kms-key')
 class KmsFilter(KmsRelatedFilter):
-    RelatedIdsExpression = 'encryptionConfiguration.KmsKeyId'
+    RelatedIdsExpression = 'encryptionConfiguration.kmsKeyId'
 
 
 @QBusiness.filter_registry.register('has-blocked-phrases')

@@ -4,27 +4,27 @@
         "ResponseMetadata": {},
         "applications": [
             {
-                "displayName": "example_q_app",
-                "applicationId": "6b1d2c2a-dd44-475a-8fc6-e4d995417553",
+                "displayName": "custodian_q_app",
+                "applicationId": "6f341b4b-6f81-4043-aacd-658d31a145e4",
                 "createdAt": {
                     "__class__": "datetime",
                     "year": 2024,
                     "month": 12,
-                    "day": 28,
-                    "hour": 20,
-                    "minute": 21,
-                    "second": 51,
-                    "microsecond": 204000
+                    "day": 29,
+                    "hour": 23,
+                    "minute": 15,
+                    "second": 58,
+                    "microsecond": 813000
                 },
                 "updatedAt": {
                     "__class__": "datetime",
                     "year": 2024,
                     "month": 12,
-                    "day": 28,
-                    "hour": 20,
-                    "minute": 21,
-                    "second": 51,
-                    "microsecond": 204000
+                    "day": 29,
+                    "hour": 23,
+                    "minute": 15,
+                    "second": 58,
+                    "microsecond": 813000
                 },
                 "status": "ACTIVE",
                 "identityType": "AWS_IAM_IDC"
