@@ -182,7 +182,7 @@ class HasStatementFilter(polstmt_filter.HasStatementFilter):
         result = client.get_resource_policy(
                 ResourceArn=resource['BackupArn']
             )
-        resource[self.policy_attribute] = result['Policy']
+        resource[self.policy_attribute] = result.get('Policy', '{}')
         return resource
 
     def get_std_format_args(self, cloudhsm_backup):
