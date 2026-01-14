@@ -38,6 +38,25 @@ def test_event_bus_kms_filter(test, event_bridge_bus):
     assert len(resources) == 1
     assert len(resources[0]['c7n:matched-kms-key']) == 1
 
+# @pytest.mark.audited
+@terraform('event_bridge_api_destination', replay=False)
+def test_event_bridge_api_destination(test, event_bridge_api_destination):
+    factory = test.record_flight_data("test_event_bridge_api_destination")
+    p = test.load_policy(
+        {
+            "name": "check-api-destinations",
+            "resource": "aws.event-rule-target",
+            "filters": [{
+                "type": "api-destination",
+                "key": "InvocationEndpoint",
+                "value": "https://example.com/webhook",
+            }]
+        },
+        session_factory=factory,
+    )
+    resources = p.run()
+    assert len(resources) == 1
+    assert resources[0]['Id'] == 'c7n-test-api-destination'
 
 class EventBusTest(BaseTest):
     def test_event_bus_delete(self):

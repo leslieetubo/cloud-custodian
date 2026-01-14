@@ -555,3 +555,54 @@ class DeletePipe(BaseAction):
                 Name=resource['Name'],
                 ignore_err_codes=('NotFoundException',)
             )
+
+@EventRuleTarget.filter_registry.register('api-destination')
+class ApiDestinationFilter(ValueFilter):
+    """
+    Filter event rule targets that are API destinations by their configuration.
+
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+            - name: filter-targets-by-api-destination
+              resource: aws.event-rule-target
+              filters:
+                - type: api-destination
+                  key: HttpMethod
+                  value: POST
+    """
+
+    schema = type_schema('api-destination', rinherit=ValueFilter.schema)
+    permissions = ('events:DescribeApiDestination',)
+
+    def process(self, resources, event=None):
+        client = local_session(self.manager.session_factory).client('events')
+        results = []
+        dest_cache = {}
+
+        for r in resources:
+            arn = r.get('Arn')
+            if not arn or ':api-destination/' not in arn:
+                continue
+            
+            # arn:aws:events:us-east-1:123456789012:api-destination/my-destination/uuid
+            try:
+                name = arn.split(':api-destination/')[1].split('/')[0]
+            except IndexError:
+                continue
+
+            if name not in dest_cache:
+                try:
+                    info = client.describe_api_destination(Name=name)
+                    info.pop('ResponseMetadata', None)
+                    dest_cache[name] = info
+                except client.exceptions.ResourceNotFoundException:
+                    dest_cache[name] = None
+            
+            if dest_cache[name] and self.match(dest_cache[name]):
+                r['c7n:ApiDestination'] = dest_cache[name]
+                results.append(r)
+        
+        return results
