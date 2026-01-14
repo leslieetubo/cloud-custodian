@@ -38,10 +38,10 @@ def test_event_bus_kms_filter(test, event_bridge_bus):
     assert len(resources) == 1
     assert len(resources[0]['c7n:matched-kms-key']) == 1
 
-# @pytest.mark.audited
-@terraform('event_bridge_api_destination', replay=False)
+@pytest.mark.audited
+@terraform('event_bridge_api_destination')
 def test_event_bridge_api_destination(test, event_bridge_api_destination):
-    factory = test.record_flight_data("test_event_bridge_api_destination")
+    factory = test.replay_flight_data("test_event_bridge_api_destination")
     p = test.load_policy(
         {
             "name": "check-api-destinations",

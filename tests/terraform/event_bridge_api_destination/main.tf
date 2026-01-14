@@ -1,15 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
 
-provider "aws" {
-  region = "us-east-1"
-}
 
 resource "aws_cloudwatch_event_bus" "messenger" {
   name = "chat-messages"

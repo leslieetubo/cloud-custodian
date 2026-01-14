@@ -1,0 +1,123 @@
+{
+    "pytest-terraform": 1,
+    "outputs": {},
+    "resources": {
+        "aws_cloudwatch_event_api_destination": {
+            "api_destination": {
+                "arn": "arn:aws:events:us-east-1:644160558196:api-destination/c7n-test-api-destination/3ce9cf0a-cc49-48d4-8f88-49e8d97e96a7",
+                "connection_arn": "arn:aws:events:us-east-1:644160558196:connection/c7n-test-connection/4a0c5f08-fef8-4277-82b9-85bc9654f44e",
+                "description": "An API Destination for testing",
+                "http_method": "POST",
+                "id": "c7n-test-api-destination",
+                "invocation_endpoint": "https://example.com/webhook",
+                "invocation_rate_limit_per_second": 300,
+                "name": "c7n-test-api-destination"
+            }
+        },
+        "aws_cloudwatch_event_bus": {
+            "messenger": {
+                "arn": "arn:aws:events:us-east-1:644160558196:event-bus/chat-messages",
+                "dead_letter_config": [],
+                "description": "",
+                "event_source_name": null,
+                "id": "chat-messages",
+                "kms_key_identifier": "",
+                "name": "chat-messages",
+                "tags": {
+                    "Env": "Sandbox"
+                },
+                "tags_all": {
+                    "Env": "Sandbox"
+                }
+            }
+        },
+        "aws_cloudwatch_event_connection": {
+            "test": {
+                "arn": "arn:aws:events:us-east-1:644160558196:connection/c7n-test-connection/4a0c5f08-fef8-4277-82b9-85bc9654f44e",
+                "auth_parameters": [
+                    {
+                        "api_key": [
+                            {
+                                "key": "x-api-key",
+                                "value": "secret"
+                            }
+                        ],
+                        "basic": [],
+                        "invocation_http_parameters": [],
+                        "oauth": []
+                    }
+                ],
+                "authorization_type": "API_KEY",
+                "description": "A connection for testing",
+                "id": "c7n-test-connection",
+                "invocation_connectivity_parameters": [],
+                "kms_key_identifier": "",
+                "name": "c7n-test-connection",
+                "secret_arn": "arn:aws:secretsmanager:us-east-1:644160558196:secret:events!connection/c7n-test-connection/c044ff77-de6b-4849-9d3f-4e3e94e2f4eb-PsQbe2"
+            }
+        },
+        "aws_cloudwatch_event_rule": {
+            "test_rule": {
+                "arn": "arn:aws:events:us-east-1:644160558196:rule/chat-messages/test-rule",
+                "description": "Capture all EC2 events",
+                "event_bus_name": "chat-messages",
+                "event_pattern": "{\"source\":[\"aws.ec2\"]}",
+                "force_destroy": false,
+                "id": "chat-messages/test-rule",
+                "is_enabled": true,
+                "name": "test-rule",
+                "name_prefix": "",
+                "role_arn": "",
+                "schedule_expression": "",
+                "state": "ENABLED",
+                "tags": null,
+                "tags_all": {}
+            }
+        },
+        "aws_cloudwatch_event_target": {
+            "test_target": {
+                "appsync_target": [],
+                "arn": "arn:aws:events:us-east-1:644160558196:api-destination/c7n-test-api-destination/3ce9cf0a-cc49-48d4-8f88-49e8d97e96a7",
+                "batch_target": [],
+                "dead_letter_config": [],
+                "ecs_target": [],
+                "event_bus_name": "chat-messages",
+                "force_destroy": false,
+                "http_target": [],
+                "id": "chat-messages-test-rule-c7n-test-api-destination",
+                "input": "",
+                "input_path": "",
+                "input_transformer": [],
+                "kinesis_target": [],
+                "redshift_target": [],
+                "retry_policy": [],
+                "role_arn": "arn:aws:iam::644160558196:role/c7n-eventbridge-role",
+                "rule": "test-rule",
+                "run_command_targets": [],
+                "sagemaker_pipeline_target": [],
+                "sqs_target": [],
+                "target_id": "c7n-test-api-destination"
+            }
+        },
+        "aws_iam_role": {
+            "event_bridge_role": {
+                "arn": "arn:aws:iam::644160558196:role/c7n-eventbridge-role",
+                "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+                "create_date": "2026-01-14T21:55:44Z",
+                "description": "",
+                "force_detach_policies": false,
+                "id": "c7n-eventbridge-role",
+                "inline_policy": [],
+                "managed_policy_arns": [],
+                "max_session_duration": 3600,
+                "name": "c7n-eventbridge-role",
+                "name_prefix": "",
+                "path": "/",
+                "permissions_boundary": "",
+                "tags": null,
+                "tags_all": {},
+                "unique_id": "AROA3RYC6HESDMCO7WSNI"
+            }
+        }
+    }
+}

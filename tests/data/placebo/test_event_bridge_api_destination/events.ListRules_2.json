@@ -1,0 +1,16 @@
+{
+    "status_code": 200,
+    "data": {
+        "Rules": [
+            {
+                "Name": "test-rule",
+                "Arn": "arn:aws:events:us-east-1:644160558196:rule/chat-messages/test-rule",
+                "EventPattern": "{\"source\":[\"aws.ec2\"]}",
+                "State": "ENABLED",
+                "Description": "Capture all EC2 events",
+                "EventBusName": "chat-messages"
+            }
+        ],
+        "ResponseMetadata": {}
+    }
+}

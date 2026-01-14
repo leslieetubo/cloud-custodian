@@ -1,0 +1,13 @@
+{
+    "status_code": 200,
+    "data": {
+        "Targets": [
+            {
+                "Id": "c7n-test-api-destination",
+                "Arn": "arn:aws:events:us-east-1:644160558196:api-destination/c7n-test-api-destination/3ce9cf0a-cc49-48d4-8f88-49e8d97e96a7",
+                "RoleArn": "arn:aws:iam::644160558196:role/c7n-eventbridge-role"
+            }
+        ],
+        "ResponseMetadata": {}
+    }
+}
