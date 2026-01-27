@@ -4,6 +4,7 @@
 from c7n.actions import BaseAction
 from c7n.filters import ValueFilter
 from c7n.filters.kms import KmsRelatedFilter
+from c7n.filters.iamaccess import CrossAccountAccessFilter
 from c7n.manager import resources
 from c7n.query import QueryResourceManager, TypeInfo
 from c7n.tags import RemoveTag, Tag, TagActionFilter, TagDelayedAction
@@ -211,6 +212,18 @@ class OpensearchIngestionPipelineConfigFilter(ValueFilter):
                 matched.append(r)
         return matched
 
+@OpensearchIngestion.filter_registry.register('cross-account')
+class CrossAccountFilter(CrossAccountAccessFilter):
+    """Filter OpenSearch Ingestion Pipelines by cross-account access"""
+    permissions = ('osis:ListPipelines',)
+    schema = type_schema(
+        'cross-account',
+        # white list accounts
+        whitelist_from=ValuesFrom.schema,
+        whitelist={'type': 'array', 'items': {'type': 'string'}})
+    
+    def process(self, resources, event=None):
+        return super().process(resources, event)
 
 @OpensearchIngestion.action_registry.register('tag')
 class TagOpensearchIngestion(Tag):
