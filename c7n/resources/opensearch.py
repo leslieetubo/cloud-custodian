@@ -45,6 +45,33 @@ class OpensearchServerless(QueryResourceManager):
 class OpensearchServerlessKmsFilter(KmsRelatedFilter):
     RelatedIdsExpression = 'kmsKeyArn'
 
+@OpensearchServerless.filter_registry.register('cross-account')
+class OpensearchServerlessCrossAccountFilter(CrossAccountAccessFilter):
+    """
+    Filter OpenSearch Ingestion Pipelines by cross-account access
+    
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+          - name: aoss-cross-account
+            resource: opensearch-serverless
+            filters:
+              - type: cross-account
+    """
+    policy_attribute = 'c7n:Policy'
+    permissions = ('aoss:GetAccessPolicy',)
+    schema = type_schema(
+        'cross-account',
+        whitelist_from=ValuesFrom.schema,
+        whitelist={'type': 'array', 'items': {'type': 'string'}})
+
+    def process(self, resources, event=None):
+        client = local_session(self.manager.session_factory).client('opensearchserverless')
+        # TODO: implement cross-account access filter
+        # Wondering if this is possible with the current API. I will ask at office hours.
+        return super().process(resources, event)
 
 @OpensearchServerless.action_registry.register('tag')
 class TagOpensearchServerlessResource(Tag):
@@ -233,7 +260,6 @@ class CrossAccountFilter(CrossAccountAccessFilter):
     permissions = ('osis:ListPipelines',)
     schema = type_schema(
         'cross-account',
-        # white list accounts
         whitelist_from=ValuesFrom.schema,
         whitelist={'type': 'array', 'items': {'type': 'string'}})
     

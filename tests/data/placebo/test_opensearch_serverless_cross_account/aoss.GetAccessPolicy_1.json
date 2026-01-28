@@ -1,0 +1,17 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200
+        },
+        "accessPolicyDetail": {
+            "name": "test-collection",
+            "type": "data",
+            "description": "read and write permissions",
+            "policyVersion": "123",
+            "policy": "[{\"Rules\":[{\"ResourceType\":\"collection\",\"Resource\":[\"collection/test-collection\"],\"Permission\":[\"aoss:*\"]},{\"ResourceType\":\"index\",\"Resource\":[\"index/test-collection/*\"],\"Permission\":[\"aoss:*\"]}],\"Principal\":[\"arn:aws:iam::444444444444:root\"]}]",
+            "createdDate": 1672531200000,
+            "lastModifiedDate": 1672531200000
+        }
+    }
+}
