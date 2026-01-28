@@ -1,8 +1,31 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
 from .common import BaseTest
-# from  pytest_terraform import terraform
+from  pytest_terraform import terraform
+import json
 
+
+
+# Placing my tests with pytest-terraform fixture here, since they do not work inside unit test classes.
+@terraform('opensearch_ingestion_cross_account')
+def test_opensearch_ingestion_cross_account(test, opensearch_ingestion_cross_account):
+    session_factory = test.replay_flight_data('test_opensearch_ingestion_cross_account')
+    p = test.load_policy(
+        {
+            'name': 'test-opensearch-ingestion-cross-account',
+            'resource': 'opensearch-ingestion',
+            'filters': [    
+                {
+                    'type': 'cross-account',
+                    'whitelist': ['123456789012']
+                }
+            ],
+            'actions': [{'type': 'delete'}]
+        },
+        session_factory=session_factory
+    )
+    resources = p.run()
+    assert len(resources) == 1
 
 class OpensearchServerless(BaseTest):
 
@@ -256,26 +279,3 @@ class OpensearchIngestion(BaseTest):
         client = session_factory().client('osis')
         pipeline = client.list_pipelines()['Pipelines'][0]
         self.assertEqual(pipeline["Status"], "DELETING")
-
-    # @terraform('opensearch_ingestion_xaccount')
-    # def test_opensearch_ingestion_cross_account(self):
-    #     session_factory = self.record_flight_data('test_opensearch_ingestion_cross_account')
-    #     p = self.load_policy(
-    #         {
-    #             'name': 'test-opensearch-ingestion-cross-account',
-    #             'resource': 'opensearch-ingestion',
-    #             'filters': [    
-    #                 {
-    #                     'type': 'cross-account',
-    #                     'whitelist': ['123456789012']
-    #                 }
-    #             ],
-    #             'actions': [{'type': 'delete'}]
-    #         },
-    #         session_factory=session_factory
-    #     )
-    #     resources = p.run()
-    #     self.assertEqual(len(resources), 1)
-    #     client = session_factory().client('osis')
-    #     pipeline = client.list_pipelines()['Pipelines'][0]
-    #     self.assertEqual(pipeline["Status"], "DELETING")

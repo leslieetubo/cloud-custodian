@@ -1,0 +1,32 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200
+        },
+        "Pipeline": {
+            "PipelineName": "test-pipeline",
+            "PipelineArn": "arn:aws:osis:us-east-1:123456789012:pipeline/test-pipeline",
+            "PipelineRoleArn": "arn:aws:iam::123456789012:role/osis-pipeline-role",
+            "MinUnits": 1,
+            "MaxUnits": 1,
+            "Status": "ACTIVE",
+            "StatusReason": {
+                "Description": "Pipeline is active"
+            },
+            "PipelineConfigurationBody": "version: \"2\"\nopensearch-pipeline:\n  source:\n    http:\n      path: \"/\"\n  sink:\n    - opensearch:\n        hosts: [ \"https://search-domain.us-east-1.opensearch.localhost.localstack.cloud:4566\" ]\n        index: \"my-index\"\n",
+            "CreatedAt": "2023-01-01T00:00:00+00:00",
+            "LastUpdatedAt": "2023-01-01T00:00:00+00:00",
+            "IngestEndpointUrls": [
+                "test-pipeline-12345678.us-east-1.osis.amazonaws.com"
+            ],
+            "LogPublishingOptions": {
+                "IsLoggingEnabled": false
+            },
+            "VpcOptions": {
+                "SubnetIds": [],
+                "SecurityGroupIds": []
+            }
+        }
+    }
+}

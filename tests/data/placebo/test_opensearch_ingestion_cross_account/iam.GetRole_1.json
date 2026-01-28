@@ -1,0 +1,27 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200
+        },
+        "Role": {
+            "Path": "/",
+            "RoleName": "osis-pipeline-role",
+            "RoleId": "AROAJ52K74XU7EXAMPLE",
+            "Arn": "arn:aws:iam::123456789012:role/osis-pipeline-role",
+            "CreateDate": "2023-01-01T00:00:00+00:00",
+            "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Service": "osis-pipelines.amazonaws.com"
+                        },
+                        "Action": "sts:AssumeRole"
+                    }
+                ]
+            }
+        }
+    }
+}

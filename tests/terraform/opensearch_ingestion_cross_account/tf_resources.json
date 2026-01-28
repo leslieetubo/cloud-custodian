@@ -1,0 +1,12 @@
+{
+    "pytest-terraform": 1,
+    "outputs": {},
+    "resources": {
+        "aws_osis_pipeline": {
+            "test": {
+                "pipeline_arn": "arn:aws:osis:us-east-1:123456789012:pipeline/test-pipeline",
+                "pipeline_name": "test-pipeline"
+            }
+        }
+    }
+}

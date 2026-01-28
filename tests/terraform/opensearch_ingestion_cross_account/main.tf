@@ -18,6 +18,13 @@ resource "aws_iam_role" "pipeline_role" {
           Service = "osis-pipelines.amazonaws.com"
         }
       },
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          AWS = "arn:aws:iam::444444444444:root"
+        }
+      }
     ]
   })
 }
@@ -87,20 +94,11 @@ opensearch-pipeline:
     - s3:
         aws:
           sts_role_arn: "${aws_iam_role.pipeline_role.arn}"
-          region: "${data.aws_region.current.name}"
+          region: "${data.aws_region.current.id}"
         bucket: "${aws_s3_bucket.sink.bucket}"
         threshold:
-          event_collect_timeout: "10s"
+          event_collect_timeout: "60s"
         codec:
           ndjson:
 EOF
 }
-
-output "pipeline_arn" {
-  value = aws_osis_pipeline.test.pipeline_arn
-}
-
-output "pipeline_name" {
-  value = aws_osis_pipeline.test.pipeline_name
-}
-

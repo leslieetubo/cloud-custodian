@@ -7,8 +7,10 @@ from c7n.filters.kms import KmsRelatedFilter
 from c7n.filters.iamaccess import CrossAccountAccessFilter
 from c7n.manager import resources
 from c7n.query import QueryResourceManager, TypeInfo
+from c7n.resolver import ValuesFrom
 from c7n.tags import RemoveTag, Tag, TagActionFilter, TagDelayedAction
 from c7n.utils import local_session, type_schema, yaml_load
+import json
 
 
 @resources.register('opensearch-serverless')
@@ -214,7 +216,20 @@ class OpensearchIngestionPipelineConfigFilter(ValueFilter):
 
 @OpensearchIngestion.filter_registry.register('cross-account')
 class CrossAccountFilter(CrossAccountAccessFilter):
-    """Filter OpenSearch Ingestion Pipelines by cross-account access"""
+    """
+    Filter OpenSearch Ingestion Pipelines by cross-account access
+    
+    :example:
+
+    .. code-block:: yaml
+
+        policies:
+          - name: osis-cross-account
+            resource: opensearch-ingestion
+            filters:
+              - type: cross-account
+    """
+    policy_attribute = 'c7n:Policy'
     permissions = ('osis:ListPipelines',)
     schema = type_schema(
         'cross-account',
@@ -223,7 +238,21 @@ class CrossAccountFilter(CrossAccountAccessFilter):
         whitelist={'type': 'array', 'items': {'type': 'string'}})
     
     def process(self, resources, event=None):
+        client = local_session(self.manager.session_factory).client('osis')
+        for r in resources:
+            if self.policy_attribute in r:
+                continue
+            try:
+                result = self.manager.retry(
+                    client.get_resource_policy,
+                    ResourceArn=r['PipelineArn'],
+                    ignore_err_codes=('ResourceNotFoundException',))
+                if result:
+                    r[self.policy_attribute] = json.loads(result['Policy'])
+            except client.exceptions.ResourceNotFoundException:
+                r[self.policy_attribute] = None
         return super().process(resources, event)
+
 
 @OpensearchIngestion.action_registry.register('tag')
 class TagOpensearchIngestion(Tag):

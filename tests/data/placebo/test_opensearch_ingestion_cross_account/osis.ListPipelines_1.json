@@ -1,0 +1,15 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {
+            "HTTPStatusCode": 200
+        },
+        "Pipelines": [
+            {
+                "PipelineName": "test-pipeline",
+                "PipelineArn": "arn:aws:osis:us-east-1:123456789012:pipeline/test-pipeline",
+                "Status": "ACTIVE"
+            }
+        ]
+    }
+}
