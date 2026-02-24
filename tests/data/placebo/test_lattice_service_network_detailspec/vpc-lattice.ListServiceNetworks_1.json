@@ -1,0 +1,36 @@
+{
+    "status_code": 200,
+    "data": {
+        "ResponseMetadata": {},
+        "items": [
+            {
+                "id": "sn-040340ca04cab5be9",
+                "name": "test-lattice-network",
+                "arn": "arn:aws:vpc-lattice:us-east-1:644160558196:servicenetwork/sn-040340ca04cab5be9",
+                "createdAt": {
+                    "__class__": "datetime",
+                    "year": 2026,
+                    "month": 2,
+                    "day": 24,
+                    "hour": 14,
+                    "minute": 50,
+                    "second": 21,
+                    "microsecond": 886000
+                },
+                "lastUpdatedAt": {
+                    "__class__": "datetime",
+                    "year": 2026,
+                    "month": 2,
+                    "day": 24,
+                    "hour": 14,
+                    "minute": 50,
+                    "second": 21,
+                    "microsecond": 886000
+                },
+                "numberOfAssociatedVPCs": 0,
+                "numberOfAssociatedServices": 0,
+                "numberOfAssociatedResourceConfigurations": 0
+            }
+        ]
+    }
+}

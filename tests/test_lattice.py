@@ -5,6 +5,31 @@ from pytest_terraform import terraform
 from .common import BaseTest
 
 
+@terraform('lattice_service_network_detailspec')
+def test_lattice_service_network_detailspec(test, lattice_service_network_detailspec):
+    session_factory = test.replay_flight_data("test_lattice_service_network_detailspec")
+    p = test.load_policy(
+        {
+            "name": "lattice-find-auth-policy-wildcard",
+            "resource": "aws.vpc-lattice-service-network",
+            "filters": [
+                {
+                    "type": "value",
+                    "key": "authType",
+                    "value": "AWS_IAM",
+                },
+            ],
+        },
+        session_factory=session_factory,
+    )
+    resources = p.run()
+    assert len(resources) > 0
+    assert resources[0]['name'] == 'test-lattice-network'
+    assert resources[0]['authType'] == 'AWS_IAM'
+    assert resources[0]['Tags'][0]['Key'] == 'PolicyTestASV'
+    assert resources[0]['Tags'][0]['Value'] == 'PolicyTestASVValue'
+
+
 class VPCLatticeServiceNetworkTests(BaseTest):
     def test_service_network_cross_account(self):
         """Test cross-account access via auth policy."""
