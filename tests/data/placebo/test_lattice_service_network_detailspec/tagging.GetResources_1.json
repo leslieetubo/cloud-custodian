@@ -7,8 +7,8 @@
                 "ResourceARN": "arn:aws:vpc-lattice:us-east-1:644160558196:servicenetwork/sn-058397f50a9fb45c2",
                 "Tags": [
                     {
-                        "Key": "PolicyTestASV",
-                        "Value": "PolicyTestASVValue"
+                        "Key": "TestServiceNetwork",
+                        "Value": "TestServiceNetworkValue"
                     }
                 ]
             }
