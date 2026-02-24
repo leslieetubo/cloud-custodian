@@ -5,9 +5,9 @@ from pytest_terraform import terraform
 from .common import BaseTest
 
 
-@terraform('lattice_service_network_detailspec', replay=False)
+@terraform('lattice_service_network_detailspec',)
 def test_lattice_service_network_detailspec(test, lattice_service_network_detailspec):
-    session_factory = test.record_flight_data("test_lattice_service_network_detailspec")
+    session_factory = test.replay_flight_data("test_lattice_service_network_detailspec")
     p = test.load_policy(
         {
             "name": "lattice-find-auth-policy-wildcard",
