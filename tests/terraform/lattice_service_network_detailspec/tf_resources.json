@@ -10,10 +10,10 @@
                 "name": "test-lattice-network",
                 "region": "us-east-1",
                 "tags": {
-                    "PolicyTestASV": "PolicyTestASVValue"
+                    "TestServiceNetwork": "TestServiceNetworkValue"
                 },
                 "tags_all": {
-                    "PolicyTestASV": "PolicyTestASVValue"
+                    "TestServiceNetwork": "TestServiceNetworkValue"
                 }
             }
         }
